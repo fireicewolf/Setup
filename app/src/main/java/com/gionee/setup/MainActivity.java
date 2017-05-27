@@ -11,9 +11,11 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    Switch airplaneModeSwitch;
     Switch mobileDataSwitch;
     Switch wifiSwitch;
     Switch bluetoothSwitch;
+    TextView airplaneModeStatus;
     TextView mobileDataStatus;
     TextView wifiStatus;
     TextView bluetoothStatus;
@@ -23,10 +25,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final Context context = getApplication();
+
         final WifiManager mWifiManager = (WifiManager) getApplicationContext().
                 getSystemService(Context.WIFI_SERVICE);
 
         final BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        airplaneModeSwitch = (Switch)findViewById(R.id.airplaneMode_switch);
+        airplaneModeStatus = (TextView)findViewById(R.id.airplaneMode_status);
 
         mobileDataSwitch = (Switch)findViewById(R.id.mobileDate_switch);
         mobileDataStatus = (TextView)findViewById(R.id.mobileDate_status);
@@ -36,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         bluetoothSwitch = (Switch)findViewById(R.id.bluetooth_switch);
         bluetoothStatus = (TextView)findViewById(R.id.bluetooth_status);
-
-        final Context context = getApplication();
 
         if (moblieData.isMobileDataEnabled(context)) {
             mobileDataSwitch.setChecked(true);
@@ -67,6 +72,24 @@ public class MainActivity extends AppCompatActivity {
             bluetoothSwitch.setChecked(false);
             bluetoothStatus.setText(R.string.status_off);
         }
+
+        airplaneModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    if (!airplaneMode.isAirplaneModeEnabled(context)) {
+                        airplaneMode.setAirplaneModeEnabled(context,true);
+                        airplaneModeStatus.setText(R.string.status_on);
+                    }
+                }
+                else {
+                    if (moblieData.isMobileDataEnabled(context)) {
+                        airplaneMode.setAirplaneModeEnabled(context,false);
+                        airplaneModeStatus.setText(R.string.status_off);
+                    }
+                }
+            }
+        });
 
         mobileDataSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
