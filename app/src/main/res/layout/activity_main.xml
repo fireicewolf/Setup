@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gionee.setup.MainActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/connection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:text="@string/connection"
+            android:textAllCaps="true"
+            android:visibility="visible" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp">
+
+            <ImageView
+                android:id="@+id/mobileDate_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:contentDescription="@string/mobileDate_icon"
+                android:visibility="visible"
+                app:srcCompat="@drawable/ic_swap_vert_black_36dp" />
+
+            <TextView
+                android:id="@+id/mobileDate_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_toEndOf="@id/mobileDate_icon"
+                android:text="@string/mobileData"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/mobileDate_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mobileDate_title"
+                android:layout_toEndOf="@id/mobileDate_icon"
+                android:layout_margin="4dp" />
+
+            <Switch
+                android:id="@+id/mobileDate_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp">
+
+            <ImageView
+                android:id="@+id/wifi_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:contentDescription="@string/wifi_icon"
+                android:visibility="visible"
+                app:srcCompat="@drawable/ic_network_wifi_black_36dp" />
+
+            <TextView
+                android:id="@+id/wifi_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_toEndOf="@id/wifi_icon"
+                android:text="@string/wifi"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/wifi_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/wifi_title"
+                android:layout_toEndOf="@id/wifi_icon"
+                android:layout_margin="4dp" />
+
+            <Switch
+                android:id="@+id/wifi_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp">
+
+            <ImageView
+                android:id="@+id/bluetooth_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:contentDescription="@string/bluetooth_icon"
+                android:visibility="visible"
+                app:srcCompat="@drawable/ic_bluetooth_black_36dp" />
+
+            <TextView
+                android:id="@+id/bluetooth_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_toEndOf="@id/bluetooth_icon"
+                android:text="@string/bluetooth"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/bluetooth_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bluetooth_title"
+                android:layout_toEndOf="@id/bluetooth_icon"
+                android:layout_margin="4dp" />
+
+            <Switch
+                android:id="@+id/bluetooth_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
