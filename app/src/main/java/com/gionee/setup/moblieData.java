@@ -30,7 +30,8 @@ class moblieData {
 
         Method setMobileDataEnable;
         try {
-            setMobileDataEnable = mTelephonyManager.getClass().getMethod("setDataEnabled", boolean.class);
+            setMobileDataEnable = mTelephonyManager.getClass().
+                    getMethod("setDataEnabled", boolean.class);
             setMobileDataEnable.invoke(mTelephonyManager, MobileDataEnabled);
         } catch (Exception e) {
             e.printStackTrace();

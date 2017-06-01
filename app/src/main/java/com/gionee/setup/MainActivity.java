@@ -1,8 +1,6 @@
 package com.gionee.setup;
 
-import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
-import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CompoundButton;
@@ -27,11 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
         final Context context = getApplication();
 
-        final WifiManager mWifiManager = (WifiManager) getApplicationContext().
-                getSystemService(Context.WIFI_SERVICE);
-
-        final BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
         airplaneModeSwitch = (Switch)findViewById(R.id.airplaneMode_switch);
         airplaneModeStatus = (TextView)findViewById(R.id.airplaneMode_status);
 
@@ -44,6 +37,18 @@ public class MainActivity extends AppCompatActivity {
         bluetoothSwitch = (Switch)findViewById(R.id.bluetooth_switch);
         bluetoothStatus = (TextView)findViewById(R.id.bluetooth_status);
 
+        if (airplaneMode.isAirplaneModeEnabled(context)) {
+            airplaneModeSwitch.setChecked(true);
+            airplaneModeStatus.setText(R.string.status_on);
+            mobileDataSwitch.setEnabled(false);
+        }
+
+        else {
+            airplaneModeSwitch.setChecked(false);
+            airplaneModeStatus.setText(R.string.status_off);
+            mobileDataSwitch.setEnabled(true);
+        }
+
         if (moblieData.isMobileDataEnabled(context)) {
             mobileDataSwitch.setChecked(true);
             mobileDataStatus.setText(R.string.status_on);
@@ -54,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             mobileDataStatus.setText(R.string.status_off);
         }
 
-        if (mWifiManager.isWifiEnabled()){
+        if (wifi.isWiFiEnabled(context)){
             wifiSwitch.setChecked(true);
             wifiStatus.setText(R.string.status_on);
         }
@@ -64,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             wifiStatus.setText(R.string.status_off);
         }
 
-        if (mBluetoothAdapter.isEnabled()){
+        if (bluetooth.isBluetoothEnabled()){
             bluetoothSwitch.setChecked(true);
             bluetoothStatus.setText(R.string.status_on);
         }
@@ -80,12 +85,14 @@ public class MainActivity extends AppCompatActivity {
                     if (!airplaneMode.isAirplaneModeEnabled(context)) {
                         airplaneMode.setAirplaneModeEnabled(context,true);
                         airplaneModeStatus.setText(R.string.status_on);
+                        mobileDataSwitch.setEnabled(false);
                     }
                 }
                 else {
-                    if (moblieData.isMobileDataEnabled(context)) {
+                    if (airplaneMode.isAirplaneModeEnabled(context)) {
                         airplaneMode.setAirplaneModeEnabled(context,false);
                         airplaneModeStatus.setText(R.string.status_off);
+                        mobileDataSwitch.setEnabled(true);
                     }
                 }
             }
@@ -113,14 +120,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    if (!mWifiManager.isWifiEnabled()) {
-                        mWifiManager.setWifiEnabled(true);
+                    if (!wifi.isWiFiEnabled(context)) {
+                        wifi.setWiFiEnabled(context, true);
                         wifiStatus.setText(R.string.status_on);
                     }
                 }
                 else {
-                    if (mWifiManager.isWifiEnabled()) {
-                        mWifiManager.setWifiEnabled(false);
+                    if (wifi.isWiFiEnabled(context)) {
+                        wifi.setWiFiEnabled(context, false);
                         wifiStatus.setText(R.string.status_off);
                     }
                 }
@@ -131,14 +138,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    if (!mBluetoothAdapter.isEnabled()) {
-                        mBluetoothAdapter.enable();
+                    if (!bluetooth.isBluetoothEnabled()) {
+                        bluetooth.setBluetoothEnable(true);
                         bluetoothStatus.setText(R.string.status_on);
                     }
                 }
                 else {
-                    if (mBluetoothAdapter.isEnabled()) {
-                        mBluetoothAdapter.disable();
+                    if (bluetooth.isBluetoothEnabled()) {
+                        bluetooth.setBluetoothEnable(false);
                         bluetoothStatus.setText(R.string.status_off);
                     }
                 }

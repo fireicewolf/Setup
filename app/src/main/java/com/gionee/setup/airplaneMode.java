@@ -7,25 +7,17 @@ import android.provider.Settings;
 class airplaneMode {
 
     static boolean isAirplaneModeEnabled(Context context) {
-        if (Settings.Global.getString(context.getContentResolver(), Settings.Global.AIRPLANE_MODE_ON).equals("1")){
-            return true;
-        }
-        else{
-            return false;
-        }
+        int isAirplaneMode = Settings.Global.getInt(context.getContentResolver(),
+                    Settings.Global.AIRPLANE_MODE_ON, 0);
+        return (isAirplaneMode == 1);
     }
 
-    static void setAirplaneModeEnabled(Context context, boolean airplaneModeEnabled){
-        if (airplaneModeEnabled) {
-            Settings.Global.putString(context.getContentResolver(), Settings.Global.AIRPLANE_MODE_ON, "1");
-            Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+    static void setAirplaneModeEnabled(Context context, boolean enable){
+            Settings.Global.putInt(context.getContentResolver(),
+                    Settings.Global.AIRPLANE_MODE_ON, enable ? 1 : 0);
+            Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED).
+                    putExtra("state", enable);
             context.sendBroadcast(intent);
-        }
-        else {
-            Settings.Global.putString(context.getContentResolver(), Settings.Global.AIRPLANE_MODE_ON, "0");
-            Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-            context.sendBroadcast(intent);
-        }
     }
 
 }
