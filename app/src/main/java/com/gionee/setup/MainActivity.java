@@ -7,6 +7,14 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.gionee.setup.connections.airplaneMode;
+import com.gionee.setup.connections.bluetooth;
+import com.gionee.setup.connections.moblieData;
+import com.gionee.setup.connections.wifi;
+import com.gionee.setup.listener.AirplaneModeListener;
+import com.gionee.setup.listener.BluetoothListener;
+import com.gionee.setup.listener.WiFiListener;
+
 public class MainActivity extends AppCompatActivity {
 
     Switch airplaneModeSwitch;
@@ -18,12 +26,64 @@ public class MainActivity extends AppCompatActivity {
     TextView wifiStatus;
     TextView bluetoothStatus;
 
+    private AirplaneModeListener airplaneModeListener;
+    private WiFiListener wifiListener;
+    private BluetoothListener bluetoothListener;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         final Context context = getApplication();
+
+        airplaneModeListener = new AirplaneModeListener(this);
+        airplaneModeListener.register(new AirplaneModeListener.AirplaneModeStateListener() {
+            @Override
+            public void onStateDisabled() {
+                airplaneModeSwitch.setChecked(false);
+                airplaneModeStatus.setText(R.string.status_off);
+                mobileDataSwitch.setEnabled(true);
+            }
+
+            @Override
+            public void onStateEnabled() {
+                airplaneModeSwitch.setChecked(true);
+                airplaneModeStatus.setText(R.string.status_on);
+                mobileDataSwitch.setEnabled(false);
+            }
+        });
+
+        wifiListener = new WiFiListener(this);
+        wifiListener.register(new WiFiListener.WLANStateListener(){
+            @Override
+            public void onStateDisabled() {
+                wifiSwitch.setChecked(false);
+                wifiStatus.setText(R.string.status_off);
+            }
+
+            @Override
+            public void onStateEnabled() {
+                wifiSwitch.setChecked(true);
+                wifiStatus.setText(R.string.status_on);
+            }
+        });
+
+        bluetoothListener = new BluetoothListener(this);
+        bluetoothListener.register(new BluetoothListener.BluetoothStateListener(){
+            @Override
+            public void onStateDisabled() {
+                bluetoothSwitch.setChecked(false);
+                bluetoothStatus.setText(R.string.status_off);
+            }
+
+            @Override
+            public void onStateEnabled() {
+                bluetoothSwitch.setChecked(true);
+                bluetoothStatus.setText(R.string.status_on);
+            }
+        });
 
         airplaneModeSwitch = (Switch)findViewById(R.id.airplaneMode_switch);
         airplaneModeStatus = (TextView)findViewById(R.id.airplaneMode_status);
@@ -37,46 +97,9 @@ public class MainActivity extends AppCompatActivity {
         bluetoothSwitch = (Switch)findViewById(R.id.bluetooth_switch);
         bluetoothStatus = (TextView)findViewById(R.id.bluetooth_status);
 
-        if (airplaneMode.isAirplaneModeEnabled(context)) {
-            airplaneModeSwitch.setChecked(true);
-            airplaneModeStatus.setText(R.string.status_on);
-            mobileDataSwitch.setEnabled(false);
-        }
-
-        else {
-            airplaneModeSwitch.setChecked(false);
-            airplaneModeStatus.setText(R.string.status_off);
-            mobileDataSwitch.setEnabled(true);
-        }
-
-        if (moblieData.isMobileDataEnabled(context)) {
-            mobileDataSwitch.setChecked(true);
-            mobileDataStatus.setText(R.string.status_on);
-        }
-
-        else {
-            mobileDataSwitch.setChecked(false);
-            mobileDataStatus.setText(R.string.status_off);
-        }
-
-        if (wifi.isWiFiEnabled(context)){
-            wifiSwitch.setChecked(true);
-            wifiStatus.setText(R.string.status_on);
-        }
-
-        else {
-            wifiSwitch.setChecked(false);
-            wifiStatus.setText(R.string.status_off);
-        }
-
-        if (bluetooth.isBluetoothEnabled()){
-            bluetoothSwitch.setChecked(true);
-            bluetoothStatus.setText(R.string.status_on);
-        }
-        else {
-            bluetoothSwitch.setChecked(false);
-            bluetoothStatus.setText(R.string.status_off);
-        }
+        mobileDataSwitch.setChecked((moblieData.isMobileDataEnabled(context)));
+        mobileDataStatus.setText(moblieData.isMobileDataEnabled(context)
+                ? R.string.status_on : R.string.status_off);
 
         airplaneModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -122,13 +145,11 @@ public class MainActivity extends AppCompatActivity {
                 if (isChecked){
                     if (!wifi.isWiFiEnabled(context)) {
                         wifi.setWiFiEnabled(context, true);
-                        wifiStatus.setText(R.string.status_on);
                     }
                 }
                 else {
                     if (wifi.isWiFiEnabled(context)) {
                         wifi.setWiFiEnabled(context, false);
-                        wifiStatus.setText(R.string.status_off);
                     }
                 }
             }
@@ -151,5 +172,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (airplaneModeListener != null) {
+            airplaneModeListener.unregister();
+        }
+        if (wifiListener != null) {
+            wifiListener.unregister();
+        }
+        if (bluetoothListener != null) {
+            bluetoothListener.unregister();
+        }
+        super.onDestroy();
     }
 }

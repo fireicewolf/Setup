@@ -1,16 +1,16 @@
-package com.gionee.setup;
+package com.gionee.setup.connections;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;
 
-class wifi {
-    static boolean isWiFiEnabled(Context context) {
+public class wifi {
+    public static boolean isWiFiEnabled(Context context) {
         WifiManager mWifiManager = (WifiManager) context.getApplicationContext().
                 getSystemService(Context.WIFI_SERVICE);
         return mWifiManager.isWifiEnabled();
     }
 
-    static void setWiFiEnabled(Context context, boolean enable) {
+    public static void setWiFiEnabled(Context context, boolean enable) {
         WifiManager mWifiManager = (WifiManager) context.getApplicationContext().
                 getSystemService(Context.WIFI_SERVICE);
         mWifiManager.setWifiEnabled(enable);

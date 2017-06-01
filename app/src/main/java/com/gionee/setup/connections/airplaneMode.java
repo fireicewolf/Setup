@@ -1,18 +1,18 @@
-package com.gionee.setup;
+package com.gionee.setup.connections;
 
 import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
 
-class airplaneMode {
+public class airplaneMode {
 
-    static boolean isAirplaneModeEnabled(Context context) {
+    public static boolean isAirplaneModeEnabled(Context context) {
         int isAirplaneMode = Settings.Global.getInt(context.getContentResolver(),
                     Settings.Global.AIRPLANE_MODE_ON, 0);
         return (isAirplaneMode == 1);
     }
 
-    static void setAirplaneModeEnabled(Context context, boolean enable){
+    public static void setAirplaneModeEnabled(Context context, boolean enable){
             Settings.Global.putInt(context.getContentResolver(),
                     Settings.Global.AIRPLANE_MODE_ON, enable ? 1 : 0);
             Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED).

@@ -1,16 +1,15 @@
-package com.gionee.setup;
+package com.gionee.setup.connections;
 
 import android.bluetooth.BluetoothAdapter;
-import android.content.Context;
 
-class bluetooth {
+public class bluetooth {
     private static BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-    static boolean isBluetoothEnabled() {
+    public static boolean isBluetoothEnabled() {
         return mBluetoothAdapter.isEnabled();
     }
 
-    static void setBluetoothEnable(boolean enable) {
+    public static void setBluetoothEnable(boolean enable) {
         if (enable) {
             mBluetoothAdapter.enable();
         }

@@ -1,4 +1,4 @@
-package com.gionee.setup;
+package com.gionee.setup.connections;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
@@ -6,9 +6,9 @@ import android.telephony.TelephonyManager;
 import java.lang.reflect.Method;
 
 
-class moblieData {
+public class moblieData {
 
-    static boolean isMobileDataEnabled(Context context) {
+    public static boolean isMobileDataEnabled(Context context) {
         TelephonyManager mTelephonyManager = (TelephonyManager)
                 context.getSystemService(Context.TELEPHONY_SERVICE);
         try{
@@ -24,7 +24,7 @@ class moblieData {
         return false;
     }
 
-    static void setMobileDataEnabled(Context context,boolean MobileDataEnabled){
+    public static void setMobileDataEnabled(Context context,boolean MobileDataEnabled){
         TelephonyManager mTelephonyManager = (TelephonyManager)
                 context.getSystemService(Context.TELEPHONY_SERVICE);
 
