@@ -97,8 +97,15 @@ public class MainActivity extends AppCompatActivity {
         bluetoothSwitch = (Switch)findViewById(R.id.bluetooth_switch);
         bluetoothStatus = (TextView)findViewById(R.id.bluetooth_status);
 
+        airplaneModeSwitch.setChecked((airplaneMode.isAirplaneModeEnabled(context)));
+        airplaneModeStatus.setText(airplaneMode.isAirplaneModeEnabled(context)
+                ? R.string.status_on : R.string.status_off);
         mobileDataSwitch.setChecked((moblieData.isMobileDataEnabled(context)));
         mobileDataStatus.setText(moblieData.isMobileDataEnabled(context)
+                ? R.string.status_on : R.string.status_off);
+
+        bluetoothSwitch.setChecked((bluetooth.isBluetoothEnabled()));
+        bluetoothStatus.setText(bluetooth.isBluetoothEnabled()
                 ? R.string.status_on : R.string.status_off);
 
         airplaneModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -176,6 +183,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        super.onDestroy();
+
         if (airplaneModeListener != null) {
             airplaneModeListener.unregister();
         }
@@ -185,6 +194,5 @@ public class MainActivity extends AppCompatActivity {
         if (bluetoothListener != null) {
             bluetoothListener.unregister();
         }
-        super.onDestroy();
     }
 }
