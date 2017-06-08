@@ -32,24 +32,42 @@ public class WiFiListener {
         }
     }
 
+    private void handleStateChanged(int state) {
+        switch (state) {
+            case WifiManager.WIFI_STATE_DISABLED:
+                if (mWLANStateListener != null) {
+                    mWLANStateListener.onStateDisabled();
+                }
+                break;
+            case WifiManager.WIFI_STATE_DISABLING:
+                if (mWLANStateListener != null) {
+                    mWLANStateListener.onStateDisabling();
+                }
+                break;
+            case WifiManager.WIFI_STATE_ENABLED:
+                if (mWLANStateListener != null) {
+                    mWLANStateListener.onStateEnabled();
+                }
+                break;
+            case WifiManager.WIFI_STATE_ENABLING:
+                if (mWLANStateListener != null) {
+                    mWLANStateListener.onStateEnabling();
+                }
+                break;
+            default:
+                if (mWLANStateListener != null) {
+                    mWLANStateListener.onStateDefault();
+                }
+        }
+    }
+
     private class WLANBroadcastReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent != null) {
                 int state = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE, 0);
-                switch (state) {
-                    case WifiManager.WIFI_STATE_DISABLED:
-                        if (mWLANStateListener != null) {
-                            mWLANStateListener.onStateDisabled();
-                        }
-                        break;
-                    case WifiManager.WIFI_STATE_ENABLED:
-                        if (mWLANStateListener != null) {
-                            mWLANStateListener.onStateEnabled();
-                        }
-                        break;
-                }
+                handleStateChanged(state);
             }
         }
     }
@@ -58,7 +76,13 @@ public class WiFiListener {
     public interface WLANStateListener {
         void onStateDisabled();
 
+        void onStateDisabling();
+
         void onStateEnabled();
+
+        void onStateEnabling();
+
+        void onStateDefault();
 
     }
 }

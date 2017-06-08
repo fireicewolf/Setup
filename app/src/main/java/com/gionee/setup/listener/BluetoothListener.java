@@ -1,7 +1,6 @@
 package com.gionee.setup.listener;
 
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -33,24 +32,41 @@ public class BluetoothListener {
         }
     }
 
+    private void handleStateChanged(int state) {
+        switch (state) {
+            case BluetoothAdapter.STATE_TURNING_OFF:
+                if (mBluetoothStateListener != null) {
+                    mBluetoothStateListener.onStateDisabling();
+                }
+            case BluetoothAdapter.STATE_OFF:
+                if (mBluetoothStateListener != null) {
+                    mBluetoothStateListener.onStateDisabled();
+                }
+                break;
+            case BluetoothAdapter.STATE_TURNING_ON:
+                if (mBluetoothStateListener != null) {
+                    mBluetoothStateListener.onStateEnabling();
+                }
+                break;
+            case BluetoothAdapter.STATE_ON:
+                if (mBluetoothStateListener != null) {
+                    mBluetoothStateListener.onStateEnabled();
+                }
+                break;
+            default:
+                if (mBluetoothStateListener != null) {
+                    mBluetoothStateListener.onStateDefault();
+                }
+        }
+    }
+
     private class BluetoothBroadcastReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent != null) {
-                int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, 0);
-                switch (state) {
-                    case BluetoothAdapter.STATE_OFF:
-                        if (mBluetoothStateListener != null) {
-                            mBluetoothStateListener.onStateDisabled();
-                        }
-                        break;
-                    case BluetoothAdapter.STATE_ON:
-                        if (mBluetoothStateListener != null) {
-                            mBluetoothStateListener.onStateEnabled();
-                        }
-                        break;
-                }
+                int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
+                handleStateChanged(state);
             }
         }
     }
@@ -59,7 +75,13 @@ public class BluetoothListener {
     public interface BluetoothStateListener {
         void onStateDisabled();
 
+        void onStateDisabling();
+
         void onStateEnabled();
+
+        void onStateEnabling();
+
+        void onStateDefault();
 
     }
 }

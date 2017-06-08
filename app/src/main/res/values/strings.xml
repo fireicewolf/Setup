@@ -3,12 +3,16 @@
     <string name="wifi">WiFi</string>
     <string name="connection">Connections</string>
     <string name="wifi_icon">WiFi Icon</string>
-    <string name="status_on">ON</string>
-    <string name="status_off">OFF</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="bluetooth_icon">Bluetooth Icon</string>
     <string name="mobileData">Mobile Data</string>
     <string name="mobileDate_icon">Mobile Data Icon</string>
     <string name="airplaneMode">Airplane Mode</string>
     <string name="airplaneMode_icon">Airplane Mode Icon</string>
+    <string name="status_on">ON</string>
+    <string name="status_off">OFF</string>
+    <string name="status_connected">Connected</string>
+    <string name="status_disconnected">Disconnected</string>
+    <string name="status_connecting">Connecting</string>
+    <string name="status_disconnecting">disconnecting</string>
 </resources>

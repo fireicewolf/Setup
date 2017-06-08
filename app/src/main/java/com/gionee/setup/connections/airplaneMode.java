@@ -19,5 +19,4 @@ public class airplaneMode {
                     putExtra("state", enable);
             context.sendBroadcast(intent);
     }
-
 }

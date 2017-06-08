@@ -4,223 +4,226 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gionee.setup.MainActivity">
+    tools:context="com.gionee.setup.MainActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="8dp">
 
-        <TextView
-            android:id="@+id/connection"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="@string/connection"
-            android:textAllCaps="true"
-            android:visibility="visible" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp">
-
-            <ImageView
-                android:id="@+id/airplaneMode_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:contentDescription="@string/airplaneMode_icon"
-                android:visibility="visible"
-                app:srcCompat="@drawable/ic_airplanemode_active_black_36dp" />
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
 
             <TextView
-                android:id="@+id/airplaneMode_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_toEndOf="@id/airplaneMode_icon"
-                android:text="@string/airplaneMode"
-                android:visibility="visible" />
-
-            <TextView
-                android:id="@+id/airplaneMode_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/airplaneMode_title"
-                android:layout_toEndOf="@id/airplaneMode_icon"
-                android:layout_margin="4dp" />
-
-            <Switch
-                android:id="@+id/airplaneMode_switch"
+                android:id="@+id/connection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
                 android:layout_margin="4dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
+                android:text="@string/connection"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:visibility="visible" />
 
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp">
-
-            <ImageView
-                android:id="@+id/mobileDate_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:contentDescription="@string/mobileDate_icon"
-                android:visibility="visible"
-                app:srcCompat="@drawable/ic_swap_vert_black_36dp" />
-
-            <TextView
-                android:id="@+id/mobileDate_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_toEndOf="@id/mobileDate_icon"
-                android:text="@string/mobileData"
-                android:visibility="visible" />
-
-            <TextView
-                android:id="@+id/mobileDate_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/mobileDate_title"
-                android:layout_toEndOf="@id/mobileDate_icon"
-                android:layout_margin="4dp" />
-
-            <Switch
-                android:id="@+id/mobileDate_switch"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_margin="4dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
-                android:visibility="visible" />
+                android:layout_height="match_parent">
 
-        </RelativeLayout>
+                <Switch
+                    android:id="@+id/airplaneMode_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp">
 
-            <ImageView
-                android:id="@+id/wifi_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:contentDescription="@string/wifi_icon"
-                android:visibility="visible"
-                app:srcCompat="@drawable/ic_network_wifi_black_36dp" />
+                    <ImageView
+                        android:id="@+id/airplaneMode_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:contentDescription="@string/airplaneMode_icon"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/airplanemode_icon" />
 
-            <TextView
-                android:id="@+id/wifi_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_toEndOf="@id/wifi_icon"
-                android:text="@string/wifi"
-                android:visibility="visible" />
+                    <TextView
+                        android:id="@+id/airplaneMode_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_toEndOf="@id/airplaneMode_icon"
+                        android:text="@string/airplaneMode"
+                        android:textStyle="bold"
+                        android:visibility="visible" />
 
-            <TextView
-                android:id="@+id/wifi_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/wifi_title"
-                android:layout_toEndOf="@id/wifi_icon"
-                android:layout_margin="4dp" />
+                    <TextView
+                        android:id="@+id/airplaneMode_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/airplaneMode_title"
+                        android:layout_margin="4dp"
+                        android:layout_toEndOf="@id/airplaneMode_icon" />
 
-            <Switch
-                android:id="@+id/wifi_switch"
+                </RelativeLayout>
+            </FrameLayout>
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_margin="4dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
-                android:visibility="visible" />
+                android:layout_height="match_parent">
 
-        </RelativeLayout>
+                <Switch
+                    android:id="@+id/mobileDate_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp">
 
-            <ImageView
-                android:id="@+id/bluetooth_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:contentDescription="@string/bluetooth_icon"
-                android:visibility="visible"
-                app:srcCompat="@drawable/ic_bluetooth_black_36dp" />
+                    <ImageView
+                        android:id="@+id/mobileDate_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:contentDescription="@string/mobileDate_icon"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/mobile_data_icon" />
 
-            <TextView
-                android:id="@+id/bluetooth_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_toEndOf="@id/bluetooth_icon"
-                android:text="@string/bluetooth"
-                android:visibility="visible" />
+                    <TextView
+                        android:id="@+id/mobileDate_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_toEndOf="@id/mobileDate_icon"
+                        android:text="@string/mobileData"
+                        android:textStyle="bold"
+                        android:visibility="visible" />
 
-            <TextView
-                android:id="@+id/bluetooth_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/bluetooth_title"
-                android:layout_toEndOf="@id/bluetooth_icon"
-                android:layout_margin="4dp" />
+                    <TextView
+                        android:id="@+id/mobileDate_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/mobileDate_title"
+                        android:layout_margin="4dp"
+                        android:layout_toEndOf="@id/mobileDate_icon" />
 
-            <Switch
-                android:id="@+id/bluetooth_switch"
+                </RelativeLayout>
+            </FrameLayout>
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_margin="4dp"
-                android:layout_marginBottom="4dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
-                android:visibility="visible" />
+                android:layout_height="match_parent">
 
-        </RelativeLayout>
+                <Switch
+                    android:id="@+id/wifi_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible" />
 
-    </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp">
+
+                    <ImageView
+                        android:id="@+id/wifi_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:contentDescription="@string/wifi_icon"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/wifi_icon" />
+
+                    <TextView
+                        android:id="@+id/wifi_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_toEndOf="@id/wifi_icon"
+                        android:text="@string/wifi"
+                        android:textStyle="bold"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/wifi_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/wifi_title"
+                        android:layout_margin="4dp"
+                        android:layout_toEndOf="@id/wifi_icon" />
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Switch
+                    android:id="@+id/bluetooth_switch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp">
+
+                    <ImageView
+                        android:id="@+id/bluetooth_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:contentDescription="@string/bluetooth_icon"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/bluetooth_icon" />
+
+                    <TextView
+                        android:id="@+id/bluetooth_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:layout_toEndOf="@id/bluetooth_icon"
+                        android:text="@string/bluetooth"
+                        android:textStyle="bold"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/bluetooth_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/bluetooth_title"
+                        android:layout_margin="4dp"
+                        android:layout_toEndOf="@id/bluetooth_icon" />
+
+                </RelativeLayout>
+            </FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>
